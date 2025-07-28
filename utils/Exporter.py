@@ -21,7 +21,7 @@ class Exporter:
         else:
             print(f"Voucher file {voucher_path} does not exist.")
 
-    def mark_vouchers_as_used(self, voucher_file_paths: [str]):
+    def mark_vouchers_as_used(self, voucher_file_paths: list[str]):
         for voucher_file_path in voucher_file_paths:
             self.add_voucher_to_used_list(voucher_file_path)
             self.delete_voucher_file(voucher_file_path)
