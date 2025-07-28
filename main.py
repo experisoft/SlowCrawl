@@ -12,7 +12,7 @@ def set_up_environment():
 
     # Ensure the links.txt file exists
     if not os.path.exists("links.txt"):
-        raise Exception("links.txt file is missing. Please create it with the URLs to scrape.")
+        raise FileNotFoundError("links.txt file is missing. Please create it with the URLs to scrape.")
         
     print("Environment set up complete.")
 
