@@ -1,4 +1,5 @@
 from playwright.sync_api import sync_playwright
+import pathlib
 
 class Scraper:
     def __init__(self):
@@ -6,6 +7,9 @@ class Scraper:
         self.USED_VOUCHER_FILE = f"used_vouchers.txt"
     
     def is_voucher_used(self, voucher_file_name: str) -> bool:
+        if not pathlib.Path(self.USED_VOUCHER_FILE).exists():
+            return False
+
         with open(self.USED_VOUCHER_FILE, "r") as file:
             used_vouchers = file.readlines()
         return voucher_file_name in [line.strip() for line in used_vouchers]
