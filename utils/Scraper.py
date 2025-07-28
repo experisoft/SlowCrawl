@@ -53,12 +53,16 @@ class Scraper:
 
     def screenshot_active_vouchers(self, page_url: str):
         with sync_playwright() as p:
-            browser = p.chromium.launch()
-            page = browser.new_page()
-            page.goto(page_url)
+            try:
+                browser = p.chromium.launch()
+                page = browser.new_page()
+                page.goto(page_url)
 
-            self.click_accept_cookies(page)
+                self.click_accept_cookies(page)
 
-            voucher_elements = self.get_voucher_elements(page)
+                voucher_elements = self.get_voucher_elements(page)
 
-            self.screenshot_voucher_elements(voucher_elements)
+                self.screenshot_voucher_elements(voucher_elements)
+            finally:
+                browser.close()
+                print("Browser closed.")
