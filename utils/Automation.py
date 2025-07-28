@@ -2,9 +2,6 @@ from utils.Scraper import Scraper
 from utils.Exporter import Exporter
 
 class Automation:
-    def __init__(self):
-        pass
-
     def get_list_of_weblinks_for_scraping(self, file_path: str) -> list:
         with open(file_path, 'r') as file:
             return [line.strip() for line in file if line.strip()]
