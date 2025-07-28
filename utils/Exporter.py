@@ -26,7 +26,7 @@ class Exporter:
             self.add_voucher_to_used_list(voucher_file_path)
             self.delete_voucher_file(voucher_file_path)
 
-    def get_voucher_value_from_filename(self, voucher_file_path: str) -> str:
+    def get_voucher_value_from_filename(self, voucher_file_path: str) -> int:
         try:
             return int(voucher_file_path.split("_")[-1].split(".")[0].replace("£", "").strip())
         except ValueError:
