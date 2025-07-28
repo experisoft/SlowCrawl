@@ -17,12 +17,11 @@ class PdfGenerator:
             current_x = self.pdf.l_margin
             current_y += self.VOUCHER_HEIGHT
 
-        elif current_y + self.VOUCHER_HEIGHT > self.pdf.h - self.pdf.b_margin:
+        if current_y + self.VOUCHER_HEIGHT > self.pdf.h - self.pdf.b_margin:
             self.pdf.add_page()
             current_x = self.pdf.l_margin
             current_y = self.pdf.t_margin
 
-        
         return current_x, current_y
         
     def move_cursor(self):
