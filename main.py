@@ -1,5 +1,6 @@
 import os
 from utils.Automation import Automation
+from logging_setup import setup_logging
 
 def set_up_environment():
     # Ensure the store directory exists
@@ -18,6 +19,9 @@ def set_up_environment():
 
 
 if __name__ == "__main__":
+    # Configure logging at application startup
+    setup_logging()
     set_up_environment()
     automation = Automation()
     automation.run()
+    
