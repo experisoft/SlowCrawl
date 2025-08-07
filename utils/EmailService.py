@@ -41,7 +41,7 @@ class EmailService:
         msg = MIMEMultipart()
         msg['From'] = self.username
         msg['To'] = self.receiver_email
-        msg['Subject'] = f"Voucher Report - {date.strftime('%Y-%m-%d')}"
+        msg['Subject'] = f"Voucher Report - {date.strftime('%Y-%m-%d')} - Total: £{voucher_total:.2f}"
         
         # Create email body
         body = f"Attached is the voucher report for {date.strftime('%Y-%m-%d')}.\nTotal Voucher Value: £{voucher_total:.2f}"
