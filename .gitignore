@@ -4,6 +4,13 @@ screenshot.png
 vouchers.pdf
 used_vouchers.txt
 
+# Environment variables
+.env
+
+# Log files
+logs/
+*.log
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
