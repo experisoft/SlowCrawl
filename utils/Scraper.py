@@ -10,9 +10,9 @@ class Scraper:
         if not pathlib.Path(self.USED_VOUCHER_FILE).exists():
             return False
 
-        with open(self.USED_VOUCHER_FILE, "r") as file:
+        with open(self.USED_VOUCHER_FILE, "r", encoding="utf-8") as file:
             used_vouchers = file.readlines()
-        return voucher_file_name in [line.strip() for line in used_vouchers]
+        return pathlib.Path(voucher_file_name).name in [line.strip() for line in used_vouchers]
 
     def click_accept_cookies(self, page):
         try:
@@ -33,6 +33,7 @@ class Scraper:
     def get_voucher_text(self, voucher):
         voucher_code = voucher.query_selector("h3").inner_text()
         voucher_amount = voucher.query_selector("h4").inner_text().split()[-1]
+        voucher_amount = voucher_amount.replace("£", "").strip()
         return voucher_code, voucher_amount
 
     def get_voucher_file_name(self, voucher_code, voucher_amount):

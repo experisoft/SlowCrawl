@@ -23,12 +23,13 @@ class Exporter:
 
     def mark_vouchers_as_used(self, voucher_file_paths: list[str]):
         for voucher_file_path in voucher_file_paths:
-            self.add_voucher_to_used_list(voucher_file_path)
+            voucher_file_name = pathlib.Path(voucher_file_path).name
+            self.add_voucher_to_used_list(voucher_file_name)
             self.delete_voucher_file(voucher_file_path)
 
     def get_voucher_value_from_filename(self, voucher_file_path: str) -> int:
         try:
-            return int(voucher_file_path.split("_")[-1].split(".")[0].replace("£", "").strip())
+            return int(voucher_file_path.split("_")[-1].split(".")[0].strip())
         except ValueError:
             print(f"Error parsing voucher value from filename: {voucher_file_path}")
             return 0
