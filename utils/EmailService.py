@@ -11,8 +11,9 @@ logger = logging.getLogger(__name__)
 
 load_dotenv()
 
-"""EmailService class to handle sending emails with an attached PDF voucher report."""
 class EmailService:
+    """EmailService class to handle sending emails with an attached PDF voucher report."""
+    
     def __init__(self):
         # Store SMTP configuration from environment variables
         self.smtp_server = os.getenv('SMTP_SERVER')
