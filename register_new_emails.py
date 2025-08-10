@@ -25,7 +25,7 @@ dotenv.load_dotenv()
 DOMAIN = os.getenv("TARGET_DOMAIN")
 EMAIL_FARM_DOMAIN = os.getenv("EMAIL_FARM_DOMAIN")
 
-def call_api(api_url):
+def call_api(api_url: str):
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
         page = browser.new_page()
@@ -44,7 +44,7 @@ def get_email_address(index: int) -> str:
 def get_email_registration_api_url(email: str) -> str:
     return DOMAIN + '/includes/mailing_list/join-club.php?email_address=' + email
 
-def request_email_registration(email):
+def request_email_registration(email: str):
     sign_up_api = get_email_registration_api_url(email)
     call_api(sign_up_api)
     print("Account Created for:", email)
