@@ -25,12 +25,14 @@ dotenv.load_dotenv()
 DOMAIN = os.getenv("TARGET_DOMAIN")
 EMAIL_FARM_DOMAIN = os.getenv("EMAIL_FARM_DOMAIN")
 
+PLAYWRIGHT_PAGE_TIMEOUT = 4000
+
 def call_api(api_url: str):
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
         page = browser.new_page()
         page.goto(api_url)
-        page.wait_for_timeout(4000)
+        page.wait_for_timeout(PLAYWRIGHT_PAGE_TIMEOUT)
         response = page.content()
         if "error" in response: # Check for errors in the response
             print("Error occurred")
