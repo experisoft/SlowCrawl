@@ -12,9 +12,12 @@ A rate over 10 new registrations per hour will result in temporary bans.
 
 import os
 import time
-import random
 import dotenv
+import random
+import logging
 from playwright.sync_api import sync_playwright
+
+logger = logging.getLogger(__name__)
 
 # Email index range
 EMAIL_START_INDEX = 140
@@ -35,8 +38,7 @@ def call_api(api_url: str):
         page.wait_for_timeout(PLAYWRIGHT_PAGE_TIMEOUT)
         response = page.content()
         if "error" in response: # Check for errors in the response
-            print("Error occurred")
-            print(response)
+            logger.error(f"API call failed for {api_url}. Response: {response}")
             raise Exception("API call failed")
         browser.close()
 
@@ -49,10 +51,11 @@ def get_email_registration_api_url(email: str) -> str:
 def request_email_registration(email: str):
     sign_up_api = get_email_registration_api_url(email)
     call_api(sign_up_api)
-    print("Account Created for:", email)
+    logger.info(f"Email registration requested for {email}")
 
 def apply_delay(MIN:int = 60, MAX:int = 75):
     random_variance = random.uniform(MIN, MAX) # adding variance to avoid patterns
+    logger.info(f"Applying delay of {random_variance} seconds")
     time.sleep(random_variance)
 
 if __name__ == "__main__":
