@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "slowcrawl"
+version = "0.1.0"
+description = "A web scraping and automation tool"
+requires-python = ">=3.9"
+dependencies = [
+    "playwright>=1.40.0",
+    "python-dotenv>=1.0.0",
+    "fpdf2>=2.7.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["utils"]

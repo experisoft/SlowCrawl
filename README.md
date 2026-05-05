@@ -17,3 +17,36 @@
 
 - 📧 **Scheduled Email Delivery**  
   Emails the compiled PDF to the user at a preset interval (e.g., twice weekly).
+
+---
+
+## 📦 Installation
+
+### Prerequisites
+
+- Python 3.9 or higher
+- [uv](https://docs.astral.sh/uv/) - Fast Python package manager and installer
+
+### Setup
+
+1. Clone or navigate to the project directory.
+
+2. Install dependencies using `uv`:
+   ```bash
+   uv sync
+   ```
+   This command will install all required packages specified in `pyproject.toml` and create a `uv.lock` file for reproducible builds.
+
+3. Create a `.env` file in the project root with your configuration (refer to `.env.example` for required variables).
+
+---
+
+## 🏃 Running the Project
+
+To start the main automation workflow, run:
+
+```bash
+uv run python main.py
+```
+
+This will initialize the environment, set up necessary directories, and begin the voucher collection and processing pipeline.
