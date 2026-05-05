@@ -37,7 +37,18 @@
    ```
    This command will install all required packages specified in `pyproject.toml` and create a `uv.lock` file for reproducible builds.
 
-3. Create a `.env` file in the project root with your configuration (refer to `.env.example` for required variables).
+3. Install `pytest-playwright`:
+  ```bash
+  pip install pytest-playwright
+  ```
+
+4. Install the Playwright browser binaries:
+  ```bash
+  uv run playwright install
+  ```
+  This downloads the browser runtime that Playwright needs before the scraper can run.
+
+5. Create a `.env` file in the project root with your configuration (refer to `.env.example` for required variables).
 
 ---
 

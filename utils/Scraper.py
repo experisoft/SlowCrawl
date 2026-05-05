@@ -58,6 +58,7 @@ class Scraper:
 
     def screenshot_active_vouchers(self, page_url: str):
         with sync_playwright() as p:
+            browser = None
             try:
                 browser = p.chromium.launch()
                 page = browser.new_page()
@@ -69,5 +70,6 @@ class Scraper:
 
                 self.screenshot_voucher_elements(voucher_elements)
             finally:
-                browser.close()
-                print("Browser closed.")
+                if browser is not None:
+                    browser.close()
+                    print("Browser closed.")
